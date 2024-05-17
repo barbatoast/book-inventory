@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Book } from '../models/book';
 import Rating from 'react-rating';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,16 +10,33 @@ interface BookItemProps {
 }
 
 export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
+  const [loaded, setLoaded] = useState(false);
   const handleRatingChange = (newRating: number) => {
     onRateBook(book.isbn, newRating);
   };
 
   return (
     <div className="book-item">
+      {loaded ? null : (
+        <div
+          className='book-image'
+          style={{
+            background: 'red',
+            height: '200px',
+            width: '200px'
+          }}
+        />
+      )}
       <h3>{book.title}</h3>
       <h4>{book.isbn}</h4>
       <p>{book.author}</p>
-      <img src={book.cover} alt={book.title} />
+      <img
+        className='book-image'
+        style={loaded ? {} : { display: 'none' }}
+        onLoad={() => setLoaded(true)}
+        src={book.cover}
+        alt={book.title}
+      />
       <Rating
         className='book-rating'
         initialRating={book.rating}

@@ -13,6 +13,11 @@ body {
     margin: 16px;
     width: 200px;
 }
+
+.book-image {
+    width: 150px;
+    height: 200px;
+}
   
 .book-rating {
     cursor: pointer;

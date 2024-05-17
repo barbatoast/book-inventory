@@ -19,6 +19,9 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
       const response = await axios.get(
         `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
       const bookData = response.data[`ISBN:${isbn}`];
+      if (!bookData) {
+        return alert("Failed to find book");
+      }
       const book: Book = {
         isbn,
         title: bookData.title,

@@ -1,5 +1,6 @@
-import React from 'react';
 import { Book } from '../models/book';
+import Rating from 'react-rating';
+import 'font-awesome/css/font-awesome.min.css';
 
 interface BookItemProps {
   book: Book;
@@ -8,9 +9,8 @@ interface BookItemProps {
 }
 
 export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
-  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rating = parseInt(e.target.value, 10);
-    onRateBook(book.isbn, rating);
+  const handleRatingChange = (newRating: number) => {
+    onRateBook(book.isbn, newRating);
   };
 
   return (
@@ -19,12 +19,12 @@ export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
       <h4>{book.isbn}</h4>
       <p>{book.author}</p>
       <img src={book.cover} alt={book.title} />
-      <input
-        type="number"
-        className="book-rating"
-        value={book.rating}
-        onChange={handleRatingChange}
-        min="1" max="5"
+      <Rating
+        className='book-rating'
+        initialRating={book.rating}
+        emptySymbol="fa fa-star-o fa-2x"
+        fullSymbol="fa fa-star fa-2x"
+        onChange={(rate) => handleRatingChange(rate)}
       />
       <button onClick={() => onDeleteBook(book.isbn)}>Delete</button>
     </div>

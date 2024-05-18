@@ -21,9 +21,7 @@ export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
         <div
           className='book-image'
           style={{
-            background: 'red',
-            height: '200px',
-            width: '200px'
+            background: 'red'
           }}
         />
       )}

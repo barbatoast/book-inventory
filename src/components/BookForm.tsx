@@ -43,13 +43,13 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
   return (
     <form onSubmit={handleAddBook}>
       <input
-        type="text"
+        type='text'
         value={isbn}
         onChange={(e) => setIsbn(e.target.value)}
-        placeholder="Enter ISBN"
+        placeholder='Enter ISBN'
         required
       />
-      <button type="submit">Add Book</button>
+      <button type='submit'>Add Book</button>
     </form>
   );
 };

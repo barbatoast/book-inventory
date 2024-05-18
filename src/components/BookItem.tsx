@@ -16,7 +16,7 @@ export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
   };
 
   return (
-    <div className="book-item">
+    <div className='book-item'>
       {loaded ? null : (
         <div
           className='book-image'
@@ -40,8 +40,8 @@ export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
       <Rating
         className='book-rating'
         initialRating={book.rating}
-        emptySymbol="fa fa-star-o fa-2x"
-        fullSymbol="fa fa-star fa-2x"
+        emptySymbol='fa fa-star-o fa-2x'
+        fullSymbol='fa fa-star fa-2x'
         onChange={(rate) => handleRatingChange(rate)}
       />
       <button onClick={() => onDeleteBook(book.isbn)}>Delete</button>

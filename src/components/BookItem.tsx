@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Book } from '../models/book';
+import { Book } from '../types/book';
 import Rating from 'react-rating';
 import 'font-awesome/css/font-awesome.min.css';
 

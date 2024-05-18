@@ -1,4 +1,4 @@
-import { Book } from '../models/book';
+import { Book } from '../types/book';
 import BookItem from './BookItem';
 
 interface BookListProps {

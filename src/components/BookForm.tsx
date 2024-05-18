@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Book } from '../models/book';
+import { Book } from '../types/book';
 
 interface BookFormProps {
   onAddBook: (book: Book) => boolean;

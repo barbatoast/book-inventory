@@ -13,8 +13,12 @@ const App = () => {
     localStorage.setItem('books', JSON.stringify(books));
   }, [books]);
 
-  const handleAddBook = (book: Book) => {
+  const handleAddBook = (book: Book): boolean => {
+    if (books.some(el => el.isbn === book.isbn)) {
+      return false;
+    }
     setBooks((prevBooks) => [...prevBooks, book]);
+    return true;
   };
 
   const handleDeleteBook = (isbn: string) => {

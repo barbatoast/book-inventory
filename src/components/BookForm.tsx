@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Book } from '../models/book';
 
 interface BookFormProps {
-  onAddBook: (book: Book) => void;
+  onAddBook: (book: Book) => boolean;
 }
 
 export const BookForm = ({ onAddBook }: BookFormProps) => {
@@ -20,7 +20,7 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
         `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
       const bookData = response.data[`ISBN:${isbn}`];
       if (!bookData) {
-        return alert("Failed to find book");
+        return alert('Failed to find book');
       }
       const book: Book = {
         isbn,
@@ -29,10 +29,14 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
         cover: bookData.cover ? bookData.cover.medium : 'No_Cover.jpg',
         rating: 0,
       };
-      onAddBook(book);
+      const ok = onAddBook(book);
+      if (!ok) {
+        return alert('ISBN already exists');
+      }
       setIsbn('');
     } catch (error) {
-      console.error('Error fetching book data:', error);
+      console.error(`Error fetching book data: ${error}`);
+      return alert(`Error fetching book data: ${error}`);
     }
   };
 

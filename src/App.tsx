@@ -33,18 +33,16 @@ const App = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background text-foreground">
-      <div className="w-full max-w-md p-4 text-center">
-        <h1 className="text-4xl mb-4">Book Inventory Manager</h1>
-        <BookForm onAddBook={handleAddBook} />
-        <BookList
-          books={books}
-          onDeleteBook={handleDeleteBook}
-          onRateBook={handleRateBook}
-        />
-        <Toaster />
-      </div>
-    </div>
+    <>
+      <h1 className="text-4xl mb-4">Book Inventory Manager</h1>
+      <BookForm onAddBook={handleAddBook} />
+      <BookList
+        books={books}
+        onDeleteBook={handleDeleteBook}
+        onRateBook={handleRateBook}
+      />
+      <Toaster />
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import Rating from "react-rating";
 import "font-awesome/css/font-awesome.min.css";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
+import BookRating from "./BookRating";
 
 interface BookItemProps {
   book: Book;
@@ -43,12 +44,10 @@ export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
           alt={book.title}
         />
         <div className="text-center mb-4">
-          <Rating
-            className="book-rating"
-            initialRating={book.rating}
-            emptySymbol="fa fa-star-o fa-2x"
-            fullSymbol="fa fa-star fa-2x"
-            onChange={(rate) => handleRatingChange(rate)}
+          <BookRating
+            rating={book.rating}
+            isbn={book.isbn}
+            onRateBook={onRateBook}
           />
         </div>
         <div className="text-center">

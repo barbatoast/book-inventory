@@ -1,0 +1,7 @@
+input[type="radio"] {
+  display: none;
+}
+
+.book-star {
+  cursor: pointer;
+}

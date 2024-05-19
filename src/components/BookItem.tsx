@@ -12,7 +12,7 @@ interface BookItemProps {
 }
 
 export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   const handleRatingChange = (newRating: number) => {
     onRateBook(book.isbn, newRating);

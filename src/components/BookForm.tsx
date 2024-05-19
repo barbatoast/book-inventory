@@ -10,7 +10,7 @@ interface BookFormProps {
 }
 
 export const BookForm = ({ onAddBook }: BookFormProps) => {
-  const [isbn, setIsbn] = useState("");
+  const [isbn, setIsbn] = useState<string>("");
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const isValidISBN = (isbn: string) => /^[0-9]{10,13}$/.test(isbn);
   const { toast } = useToast();

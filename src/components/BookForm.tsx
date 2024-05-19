@@ -11,6 +11,7 @@ interface BookFormProps {
 
 export const BookForm = ({ onAddBook }: BookFormProps) => {
   const [isbn, setIsbn] = useState("");
+  const [isFetching, setIsFetching] = useState<boolean>(false);
   const isValidISBN = (isbn: string) => /^[0-9]{10,13}$/.test(isbn);
   const { toast } = useToast();
 
@@ -22,12 +23,14 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
         title: "Please enter a valid ISBN.",
       });
     }
+    setIsFetching(true);
     try {
       const response = await axios.get(
         `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
       );
       const bookData = response.data[`ISBN:${isbn}`];
       if (!bookData) {
+        setIsFetching(false);
         return toast({
           variant: "destructive",
           description: "Failed to find book.",
@@ -42,14 +45,17 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
       };
       const ok = onAddBook(book);
       if (!ok) {
+        setIsFetching(false);
         return toast({
           variant: "destructive",
           title: "ISBN already exists",
         });
       }
       setIsbn("");
+      setIsFetching(false);
     } catch (error) {
       console.error(error);
+      setIsFetching(false);
       return toast({
         variant: "destructive",
         title: "Error fetching book data",
@@ -73,7 +79,7 @@ export const BookForm = ({ onAddBook }: BookFormProps) => {
         required
       />
       <br />
-      <Button type="submit">Add Book</Button>
+      <Button type="submit">{isFetching ? "Fetching..." : "Add Book"}</Button>
     </form>
   );
 };

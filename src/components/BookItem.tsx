@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Book } from "../types/book";
-import Rating from "react-rating";
-import "font-awesome/css/font-awesome.min.css";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 import BookRating from "./BookRating";
@@ -14,10 +12,6 @@ interface BookItemProps {
 
 export const BookItem = ({ book, onDeleteBook, onRateBook }: BookItemProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
-
-  const handleRatingChange = (newRating: number) => {
-    onRateBook(book.isbn, newRating);
-  };
 
   return (
     <div className="bg-card text-card-foreground p-4 rounded-lg shadow-md mb-4 mt-8 max-w-md mx-auto">

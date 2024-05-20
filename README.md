@@ -9,7 +9,7 @@ Book Inventory project built with React, Typescript and Vite
 ## Setup
 
 ```bash
-npm run build
+npm install
 npm run dev
 ```
 

@@ -4,7 +4,7 @@ Book Inventory project built with React, Typescript and Vite
 
 ## Demo
 
-- https://book-inventory-iota.vercel.app/
+- https://book-inventory-manager.vercel.app/
 
 ## Setup
 
